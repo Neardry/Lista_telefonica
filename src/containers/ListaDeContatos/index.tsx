@@ -11,18 +11,14 @@ import {
 } from './styles'
 import Procurar from '../../components/Procurar'
 import { UserInfo } from '../../types/userInfo'
+import { updateUserInfo, setUserInfo } from '../../store/reducers/opcoesCard'
+import { useAppDispatch, useAppSelector } from '../../store/hooks/hooks'
 
 type ListaDeContatosProps = {
   userInfos: UserInfo[]
-  deleteCard: (index: number) => void
-  editarCard: (index: number, updateUserInfo: UserInfo) => void
 }
 
-const ListaDeContatos: React.FC<ListaDeContatosProps> = ({
-  userInfos,
-  deleteCard,
-  editarCard
-}) => {
+const ListaDeContatos: React.FC<ListaDeContatosProps> = () => {
   const [editIndex, setEditIndex] = useState<number | null>(null)
   const [termoPesquisa, setTermoPesquisa] = useState<string>('')
   const [editando, setEditando] = useState(false)
@@ -31,6 +27,17 @@ const ListaDeContatos: React.FC<ListaDeContatosProps> = ({
     email: '',
     phone: ''
   })
+  const userInfos = useAppSelector((state) => state.user.userInfos)
+  const dispatch = useAppDispatch()
+
+  const editarCard = (i: number, updatedUserInfo: UserInfo) => {
+    dispatch(updateUserInfo({ index: i, updatedUserInfo }))
+  }
+
+  const deleteCard = (index: number) => {
+    const updatedUserInfo = userInfos.filter((_, i) => index !== i)
+    dispatch(setUserInfo(updatedUserInfo))
+  }
 
   const quandoMudar = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target

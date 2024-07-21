@@ -1,11 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 const asideSlice = createSlice({
   name: 'aside',
   initialState: false,
   reducers: {
-    aparece: (state, action: PayloadAction<boolean>) => {
-      state = !action
+    aparece: (state) => {
+      return !state
     }
   }
 })

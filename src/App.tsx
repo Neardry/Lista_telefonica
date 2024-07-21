@@ -1,41 +1,12 @@
-import React, { useState } from 'react'
-import { Adicionar, EstiloGlobal } from './styles'
-import Aside from './containers/Aside'
-import ListaDeContatos from './containers/ListaDeContatos'
-import { Provider } from 'react-redux'
+import React from 'react'
+import MyComponent from './myComponent'
 import store from './store'
-import { UserInfo } from './types/userInfo'
+import { Provider } from 'react-redux'
 
 function App() {
-  const [isDisable, setIsDisable] = useState(false)
-  const [userInfos, setUserInfos] = useState<UserInfo[]>([])
-
-  const deleteCard = (index: number) => {
-    setUserInfos((prevUserInfos) => prevUserInfos.filter((_, i) => index !== i))
-  }
-
-  const editarCard = (i: number, updateUserInfo: UserInfo) => {
-    setUserInfos((prevUserInfos) =>
-      prevUserInfos.map((userInfo, index) =>
-        i === index ? updateUserInfo : userInfo
-      )
-    )
-  }
-
-  function apareceAside() {
-    setIsDisable(!isDisable)
-  }
-
   return (
     <Provider store={store}>
-      <EstiloGlobal />
-      {isDisable && <Aside setUserInfos={setUserInfos} />}
-      <ListaDeContatos
-        editarCard={editarCard}
-        deleteCard={deleteCard}
-        userInfos={userInfos}
-      />
-      <Adicionar onClick={apareceAside}>{isDisable ? 'X' : '+'}</Adicionar>
+      <MyComponent />
     </Provider>
   )
 }

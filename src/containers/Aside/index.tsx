@@ -8,17 +8,17 @@ import {
   BotaoEnviar
 } from './styles'
 import { UserInfo } from '../../types/userInfo'
+import { useAppDispatch } from '../../store/hooks/hooks'
+import { addUserInfo } from '../../store/reducers/opcoesCard'
 
-type AsideProps = {
-  setUserInfos: React.Dispatch<React.SetStateAction<UserInfo[]>> //Infos que vão para o card
-}
-
-const Aside: React.FC<AsideProps> = ({ setUserInfos }) => {
+const Aside = () => {
   const [formState, setFormState] = useState<UserInfo>({
     name: '',
     email: '',
     phone: ''
   }) //inputs com as infos digitadas pelo user
+
+  const dispatch = useAppDispatch()
 
   const quandoMudar = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
@@ -52,7 +52,7 @@ const Aside: React.FC<AsideProps> = ({ setUserInfos }) => {
 
   const quandoEnviar = (e: React.FormEvent) => {
     e.preventDefault()
-    setUserInfos((prevUserInfo) => [...prevUserInfo, formState]) //Atualiza o array das infos que o Card utiliza
+    dispatch(addUserInfo(formState)) //Atualiza o array das infos que o Card utiliza
     setFormState({
       name: '',
       email: '',
