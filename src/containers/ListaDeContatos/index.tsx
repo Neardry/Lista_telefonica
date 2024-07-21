@@ -7,7 +7,8 @@ import {
   BotaoOpcaoEditar,
   BotaoSalvarEdicao,
   ContainerEdicao,
-  InputEdicao
+  InputEdicao,
+  SolicitaInfo
 } from './styles'
 import Procurar from '../../components/Procurar'
 import { UserInfo } from '../../types/userInfo'
@@ -136,7 +137,7 @@ const ListaDeContatos: React.FC<ListaDeContatosProps> = () => {
           </Card>
         ))
       ) : (
-        <h1>Insira seus dados</h1>
+        <SolicitaInfo>Insira seus dados</SolicitaInfo>
       )}
     </Flex>
   )

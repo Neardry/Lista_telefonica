@@ -67,3 +67,8 @@ export const BotaoOpcaoEditar = styled(BotaoOpcao)`
 export const BotaoSalvarEdicao = styled(BotaoOpcao)`
   background-color: green;
 `
+
+export const SolicitaInfo = styled.h1`
+  font-family: cursive;
+  margin-top: 10%;
+`
