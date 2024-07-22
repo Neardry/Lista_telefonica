@@ -15,11 +15,7 @@ import { UserInfo } from '../../types/userInfo'
 import { updateUserInfo, setUserInfo } from '../../store/reducers/opcoesCard'
 import { useAppDispatch, useAppSelector } from '../../store/hooks/hooks'
 
-type ListaDeContatosProps = {
-  userInfos: UserInfo[]
-}
-
-const ListaDeContatos: React.FC<ListaDeContatosProps> = () => {
+const ListaDeContatos = () => {
   const [editIndex, setEditIndex] = useState<number | null>(null)
   const [termoPesquisa, setTermoPesquisa] = useState<string>('')
   const [editando, setEditando] = useState(false)
